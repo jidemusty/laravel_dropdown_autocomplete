@@ -24,8 +24,7 @@
 </template>
 
 <script>
-    import autocomplete from 'autocomplete.js'
-    import algolia from 'algoliasearch'
+    import { userautocomplete } from '../helpers/autocomplete.js'
 
     export default {
         methods: {
@@ -34,23 +33,7 @@
             }
         },
         mounted () {
-
-            const index = new algolia('BDP6CLWVMX', 'f87c24b944977c405c0dfc60dbc8bfc4').initIndex('users')
-
-            autocomplete('#users', {
-                hint: true
-            }, {
-                source: autocomplete.sources.hits(index, { hitsPerPage: 10 }),
-                displayKey: 'name',
-                templates: {
-                    suggestion (suggestion) {
-                        console.log(suggestion)
-                        return `<span>${suggestion._highlightResult.name.value}</span>`
-                    },
-                    empty: `<div class="aa-empty">No People Found</div>`
-                }
-            })
-
+            userautocomplete('#users')
         }
     }
 </script>

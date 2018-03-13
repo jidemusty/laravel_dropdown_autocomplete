@@ -47264,10 +47264,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_autocomplete_js__ = __webpack_require__(59);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_autocomplete_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_autocomplete_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_algoliasearch__ = __webpack_require__(88);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_algoliasearch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_algoliasearch__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_autocomplete_js__ = __webpack_require__(108);
 //
 //
 //
@@ -47293,7 +47290,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-
 
 
 
@@ -47304,23 +47300,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
     },
     mounted: function mounted() {
-
-        var index = new __WEBPACK_IMPORTED_MODULE_1_algoliasearch___default.a('BDP6CLWVMX', 'f87c24b944977c405c0dfc60dbc8bfc4').initIndex('users');
-
-        __WEBPACK_IMPORTED_MODULE_0_autocomplete_js___default()('#users', {
-            hint: true
-        }, {
-            source: __WEBPACK_IMPORTED_MODULE_0_autocomplete_js___default.a.sources.hits(index, { hitsPerPage: 10 }),
-            displayKey: 'name',
-            templates: {
-                suggestion: function suggestion(_suggestion) {
-                    console.log(_suggestion);
-                    return '<span>' + _suggestion._highlightResult.name.value + '</span>';
-                },
-
-                empty: '<div class="aa-empty">No People Found</div>'
-            }
-        });
+        Object(__WEBPACK_IMPORTED_MODULE_0__helpers_autocomplete_js__["a" /* userautocomplete */])('#users');
     }
 });
 
@@ -57670,6 +57650,40 @@ function createPlacesClient(algoliasearch) {
 
 module.exports = '3.25.1';
 
+
+/***/ }),
+/* 108 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return userautocomplete; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_autocomplete_js__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_autocomplete_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_autocomplete_js__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_algoliasearch__ = __webpack_require__(88);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_algoliasearch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_algoliasearch__);
+
+
+
+var index = new __WEBPACK_IMPORTED_MODULE_1_algoliasearch___default.a('BDP6CLWVMX', 'f87c24b944977c405c0dfc60dbc8bfc4');
+
+var userautocomplete = function userautocomplete(selector) {
+    index = index.initIndex('users');
+
+    __WEBPACK_IMPORTED_MODULE_0_autocomplete_js___default()(selector, {
+        hint: true
+    }, {
+        source: __WEBPACK_IMPORTED_MODULE_0_autocomplete_js___default.a.sources.hits(index, { hitsPerPage: 10 }),
+        displayKey: 'name',
+        templates: {
+            suggestion: function suggestion(_suggestion) {
+                console.log(_suggestion);
+                return '<span>' + _suggestion._highlightResult.name.value + '</span>';
+            },
+
+            empty: '<div class="aa-empty">No People Found</div>'
+        }
+    });
+};
 
 /***/ })
 /******/ ]);
