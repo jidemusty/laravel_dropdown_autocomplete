@@ -24,14 +24,30 @@
 </template>
 
 <script>
+    import autocomplete from 'autocomplete.js'
+    import algolia from 'algoliasearch'
+
     export default {
         methods: {
             send () {
                 console.log('send message')
             }
         },
-        mounted() {
-            console.log('Component mounted.')
+        mounted () {
+
+            const index = new algolia('BDP6CLWVMX', 'f87c24b944977c405c0dfc60dbc8bfc4').initIndex('users')
+
+            autocomplete('#users', {}, {
+                source: autocomplete.sources.hits(index, { hitsPerPage: 10 }),
+                templates: {
+                    suggestion (suggestion) {
+                        return `<span>${suggestion.name}</span>`
+                    },
+                    displayKey: 'name',
+                    empty: `<div class="aa-empty">No People Found</div>`
+                }
+            })
+
         }
     }
 </script>
