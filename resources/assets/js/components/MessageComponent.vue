@@ -37,13 +37,16 @@
 
             const index = new algolia('BDP6CLWVMX', 'f87c24b944977c405c0dfc60dbc8bfc4').initIndex('users')
 
-            autocomplete('#users', {}, {
+            autocomplete('#users', {
+                hint: true
+            }, {
                 source: autocomplete.sources.hits(index, { hitsPerPage: 10 }),
+                displayKey: 'name',
                 templates: {
                     suggestion (suggestion) {
-                        return `<span>${suggestion.name}</span>`
+                        console.log(suggestion)
+                        return `<span>${suggestion._highlightResult.name.value}</span>`
                     },
-                    displayKey: 'name',
                     empty: `<div class="aa-empty">No People Found</div>`
                 }
             })

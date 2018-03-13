@@ -47307,14 +47307,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         var index = new __WEBPACK_IMPORTED_MODULE_1_algoliasearch___default.a('BDP6CLWVMX', 'f87c24b944977c405c0dfc60dbc8bfc4').initIndex('users');
 
-        __WEBPACK_IMPORTED_MODULE_0_autocomplete_js___default()('#users', {}, {
+        __WEBPACK_IMPORTED_MODULE_0_autocomplete_js___default()('#users', {
+            hint: true
+        }, {
             source: __WEBPACK_IMPORTED_MODULE_0_autocomplete_js___default.a.sources.hits(index, { hitsPerPage: 10 }),
+            displayKey: 'name',
             templates: {
                 suggestion: function suggestion(_suggestion) {
-                    return '<span>' + _suggestion.name + '</span>';
+                    console.log(_suggestion);
+                    return '<span>' + _suggestion._highlightResult.name.value + '</span>';
                 },
 
-                displayKey: 'name',
                 empty: '<div class="aa-empty">No People Found</div>'
             }
         });
