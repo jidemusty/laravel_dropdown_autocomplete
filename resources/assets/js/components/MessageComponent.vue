@@ -8,7 +8,7 @@
                     <div class="card-body">
                         <form action="" @submit.prevent="send">
                             <div class="form-group">
-                                <label for="users">Choose users</label>
+                                <label for="users">Choose users: start typing</label>
                                 <input type="text" name="users" id="users" class="form-control">
                             </div>
 
