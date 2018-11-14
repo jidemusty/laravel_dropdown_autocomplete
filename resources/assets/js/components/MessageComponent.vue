@@ -13,7 +13,7 @@
                             </div>
 
                             <div class="form-group">
-                                <button type="submit" class="btn btn-success">Send</button>
+                                <button type="submit" class="btn btn-success" placeholder="Start typing">Send</button>
                             </div>
                         </form>
                     </div>
